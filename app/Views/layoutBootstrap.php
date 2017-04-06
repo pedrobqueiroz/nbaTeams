@@ -17,19 +17,17 @@
 <body>
 	<div class="container">
 		<header>
-			<h1>W :: <?= $this->e($title) ?></h1>
-
+			<h1>Uuuuuuh! <?= $this->e($title) ?></h1>
 			<nav class="navbar navbar-default">
-			  <div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <!--div class="navbar-header">
+			    <div class="navbar-header">
 			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 			        <span class="sr-only">Toggle navigation</span>
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button
-			    </div-->
+			    </div>
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,6 +36,8 @@
 		            <li <?php if($currentPage == 'contact'):?>  class="active"><a href="<?= $this->url('default_contact') ?>">Contact</a></li <?php endif; ?>>
 		            <li <?php if($currentPage == 'west'):?>  class="active"><a href="<?= $this->url('conference_west') ?>">Conference West</a></li <?php endif; ?>>
 		            <li <?php if($currentPage == 'east'):?>  class="active"><a href="<?= $this->url('conference_east') ?>">Conference East</a></li <?php endif; ?>>
+		            <li <?php if($currentPage == 'signin'):?>  class="active"><a href="<?= $this->url('user_signin') ?>">Sign In</a></li <?php endif; ?>>
+		            <li <?php if($currentPage == 'signup'):?>  class="active"><a href="<?= $this->url('user_signup') ?>">Sign Up</a></li <?php endif; ?>>
 			      </ul>
 			      <form class="navbar-form navbar-left">
 			        <div class="form-group">
@@ -46,9 +46,14 @@
 			        <button type="submit" class="btn btn-default">Submit</button>
 				</form>
 			    </div><!-- /.navbar-collapse -->
-			  </div><!-- /.container-fluid -->
 			</nav>
 		</header>
+
+		<?php if(isset($w_flash_message) && !empty($w_flash_message->message)) :?>
+			<div class="alert alert-<?=$w_flash_message->level ?>">
+				<?= $w_flash_message->message ?>
+			</div>
+		<?php endif; ?>
 
 		<section>
 			<?= $this->section('main_content') ?>
