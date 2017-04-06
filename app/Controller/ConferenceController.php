@@ -14,6 +14,8 @@ class ConferenceController extends Controller
 	 */
 	public function east()
 	{
+		$this->allowTo('user', 'admin');
+
 		$conferenceModel = new ConferenceModel();
 		$all = $conferenceModel->getAllTeamsAndDivisions(2);
 

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Contact', 'currentPage' => 'contact']) ?>
+<?php $this->layout('layoutBootstrap', ['title' => 'Contact', 'currentPage' => 'contact']) ?>
 
 <?php $this->start('main_content') ?>
 	<h2>Contact</h2>

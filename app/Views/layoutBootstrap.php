@@ -31,29 +31,43 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-		            <li><a href="<?= $this->url('default_home') ?>">Home</a></li>
-		            <li <?php if($currentPage == 'contact'):?>  class="active"><a href="<?= $this->url('default_contact') ?>">Contact</a></li <?php endif; ?>>
-		            <li <?php if($currentPage == 'west'):?>  class="active"><a href="<?= $this->url('conference_west') ?>">Conference West</a></li <?php endif; ?>>
-		            <li <?php if($currentPage == 'east'):?>  class="active"><a href="<?= $this->url('conference_east') ?>">Conference East</a></li <?php endif; ?>>
-		            <li <?php if($currentPage == 'signin'):?>  class="active"><a href="<?= $this->url('user_signin') ?>">Sign In</a></li <?php endif; ?>>
-		            <li <?php if($currentPage == 'signup'):?>  class="active"><a href="<?= $this->url('user_signup') ?>">Sign Up</a></li <?php endif; ?>>
-			      </ul>
-			      <form class="navbar-form navbar-left">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
-			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
-				</form>
+			    	<ul class="nav navbar-nav">
+			            <li <?php if($currentPage == 'home'):?>  class="active" <?php endif; ?>><a href="<?= $this->url('default_home') ?>">Home</a>
+			            </li>
+			            <li <?php if($currentPage == 'contact'):?>  class="active" <?php endif; ?>><a href="<?= $this->url('default_contact') ?>">Contact</a>
+			            </li>
+			            <li <?php if($currentPage == 'west'):?>  class="active"<?php endif; ?>><a href="<?= $this->url('conference_west') ?>">Conference West</a>
+			            </li >
+			            <li <?php if($currentPage == 'east'):?>  class="active"<?php endif; ?>><a href="<?= $this->url('conference_east') ?>">Conference East</a>
+			            </li >
+			            <?php if(empty($w_user)) :?>
+				            <li <?php if($currentPage == 'signin'):?>  class="active"<?php endif; ?>><a href="<?= $this->url('user_signin') ?>">Sign In</a>
+				            </li >
+				        <?php else : ?>
+				        	<li <?php if($currentPage == 'logout'):?>  class="active"<?php endif; ?>><a href="<?= $this->url('user_logout') ?>">Log Out</a>
+				        	</li >
+				        <?php endif; ?>
+				            <li <?php if($currentPage == 'signup'):?>  class="active"<?php endif; ?>><a href="<?= $this->url('user_signup') ?>">Sign Up</a>
+				            </li >
+			      	</ul>
+			      	<form class="navbar-form navbar-left">
+			        	<div class="form-group">
+			          		<input type="text" class="form-control" placeholder="Search">
+			        	</div>
+			        	<button type="submit" class="btn btn-default">Submit</button>
+					</form>
 			    </div><!-- /.navbar-collapse -->
 			</nav>
 		</header>
 
-		<?php if(isset($w_flash_message) && !empty($w_flash_message->message)) :?>
-			<div class="alert alert-<?=$w_flash_message->level ?>">
-				<?= $w_flash_message->message ?>
-			</div>
-		<?php endif; ?>
+		<?php if(!empty($w_user)) :?>
+			<?php if(isset($w_flash_message) && !empty($w_flash_message->message)) :?>
+				<div class="alert alert-<?=$w_flash_message->level?>" role="alert">
+					<?= $w_flash_message->message ?>
+				</div>
+			<?php endif; ?>
+		<?php endif ?>
+
 
 		<section>
 			<?= $this->section('main_content') ?>

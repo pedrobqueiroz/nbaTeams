@@ -10,6 +10,7 @@ class UserController extends Controller{
 		unset($_SESSION['flash']);
 		$this->show('user/signin');
 	}
+
 	public function signinPost(){
 		debug($_POST);
 
@@ -31,14 +32,13 @@ class UserController extends Controller{
 			if($userId>0){
 				$usersModel = new \W\Model\UsersModel();
 				$userInfo = $usersModel->find($userId);
-				$authentificationModel->logUserIn($user);
+				$authentificationModel->logUserIn($userInfo);
 
-				$this->flash('Success for user:'.$userInfos['usr_email'], 'success');
+				$this->flash('Success for user:'.$userInfo['usr_email'], 'success');
 				$this->redirectToRoute('default_home');
 			}
 			else{
-				$this->flash($userInfos['usr_email'].' : this email is bad!', 'success');
-
+				$this->flash($userInfo['usr_email'].' : this email is bad!', 'success');
 			}
 		}
 		else{
@@ -51,7 +51,6 @@ class UserController extends Controller{
 		unset($_SESSION['flash']);
 
 		if (!empty($_POST)){
-			//debug($_POST);
 
 			$errorList = array();
 
@@ -99,8 +98,15 @@ class UserController extends Controller{
 		$this->show('user/signup');
 
 	}
-	// public function forgotPassword(){
+	public function forgotPassword(){
 		
-	// }
+	}
+
+	public function logout(){
+		$authentificationModel = new \W\Security\AuthentificationModel();
+		$authentificationModel->logUserOut();
+
+		$this->redirectToRoute('default_home');
+	}
 
 }

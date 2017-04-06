@@ -11,5 +11,6 @@
 		['GET', '/signin/', 'User#signin', 'user_signin'],
 		['POST', '/signin/', 'User#signinPost', 'user_signinPost'],
 
-		['GET|POST', '/signup/', 'User#signup', 'user_signup']
+		['GET|POST', '/signup/', 'User#signup', 'user_signup'],
+		['GET', '/logout/', 'User#logout', 'user_logout']
 	);

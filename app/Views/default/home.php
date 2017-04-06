@@ -1,7 +1,8 @@
-<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+<?php $this->layout('layoutBootstrap', ['title' => 'Home', 'currentPage' => 'home']) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Accueil</h2>
+	<?php debug($w_user); ?>
+	<h2>Ho-Home-Homey</h2>
 	<p>Et maintenant, RTFM dans <strong><a href="../docs/tuto/" title="Documentation de W">docs/tuto</a></strong>.</p>
 	<p><a href="<?= $this->url('default_contact') ?>">Contact</a></p>
 	<p><a href="<?= $this->url('conference_east') ?>">East Conference</a></p>
